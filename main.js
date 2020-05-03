@@ -2,10 +2,18 @@ const RANDOM_QUOTE_API_URL = "http://api.quotable.io/random";
 const quoteDisplay = document.querySelector("#quote-display");
 const quoteInput = document.querySelector("#quote-input");
 const timer = document.querySelector(".timer");
+const wpm = document.querySelector("#wpm");
 let playing = false;
-let playingTime = 10; // In seconds
+let playingTime = 60; // In seconds
+let words = 0;
+
+const modal = document.querySelector(".modal");
+const startMenu = document.querySelector(".start-menu");
+const resultsMenu = document.querySelector(".result-menu");
+const startButton = document.querySelector("#start");
 
 quoteInput.addEventListener("input", () => {
+  words = 0;
   if (!playing) {
     playing = true;
     startTimer();
@@ -24,6 +32,17 @@ quoteInput.addEventListener("input", () => {
     } else if (character === characterSpan.innerText) {
       characterSpan.classList.add("correct");
       characterSpan.classList.remove("incorrect");
+      correct = true;
+      if (!(quote.length == input.length)) {
+        if (
+          quote[index + 1].innerText == " " ||
+          quote[index + 1].innerText == "." ||
+          quote[index + 1].innerText == "!" ||
+          quote[index + 1].innerText == "?"
+        ) {
+          words++;
+        }
+      }
     } else {
       characterSpan.classList.remove("correct");
       characterSpan.classList.add("incorrect");
@@ -33,12 +52,6 @@ quoteInput.addEventListener("input", () => {
 
   if (correct) {
     renderNewQuote();
-  }
-
-  if (parseInt(timer.innerText) == playingTime) {
-    clearTimeout(timerId);
-    timer.innerText = 0;
-    playing = false;
   }
 });
 
@@ -67,6 +80,14 @@ function startTimer() {
   startTime = new Date();
   timerId = setInterval(() => {
     timer.innerText = getTimerTime();
+    wpm.innerText = Math.round(words / (parseInt(timer.innerText) / 60));
+    if (parseInt(timer.innerText) == playingTime) {
+      clearTimeout(timerId);
+      timer.innerText = 0;
+      playing = false;
+      modal.style.display = "block";
+      resultsMenu.style.display = "flex";
+    }
   }, 1000);
 }
 
@@ -74,4 +95,10 @@ function getTimerTime() {
   return Math.floor((new Date() - startTime) / 1000);
 }
 
-renderNewQuote();
+startButton.addEventListener("click", () => {
+  modal.style.display = "none";
+  startMenu.style.display = "none";
+  timer.innerText = 0;
+  wpm.innerText = 0;
+  renderNewQuote();
+});
