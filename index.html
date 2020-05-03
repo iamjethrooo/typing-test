@@ -4,15 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Type Test</title>
+    <title>Typing Test</title>
   </head>
   <body>
     <header><a href="#">Typing Test</a></header>
     <main>
-      <div class="timer" id="timer">0</div>
+      <div class="modal">
+        <div class="modal-content start-menu">
+          <h1>Typing Test</h1>
+          <div class="modal-buttons">
+            <div class="time-selection">
+              <button class="modal-button">1:00</button>
+              <button class="modal-button">3:00</button>
+              <button class="modal-button">5:00</button>
+            </div>
+            <button class="modal-button" id="start">Start</button>
+          </div>
+        </div>
+        <div class="modal-content result-menu">
+          <div class="stat-container">
+            <div class="stat">
+              <span>WPM: </span>
+              <span>0</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container">
-        <div class="quote-display" id="quote-display"></div>
-        <textarea id="quote-input" class="quote-input" autofocus></textarea>
+        <div class="quote-container">
+          <div class="quote-display" id="quote-display"></div>
+          <textarea id="quote-input" class="quote-input" autofocus></textarea>
+        </div>
+        <div class="stat-container">
+          <div class="stat">
+            <span>Time: </span>
+            <span class="timer" id="timer"></span>
+          </div>
+          <div class="stat">
+            <span>WPM: </span>
+            <span id="wpm"></span>
+          </div>
+        </div>
       </div>
     </main>
     <footer><p>&copy;Jethro Estangki 2020</p></footer>

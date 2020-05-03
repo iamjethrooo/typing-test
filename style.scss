@@ -30,6 +30,7 @@ header {
   padding: 7px;
   width: 100%;
 }
+
 header a {
   font-weight: 300;
   text-decoration: none;
@@ -44,25 +45,25 @@ body,
 }
 
 .container {
+  display: flex;
+  justify-content: space-between;
   background-color: $lightGreen;
   padding: 1rem;
+  width: 1000px;
   border-radius: 0.5rem;
-  width: 700px;
-  max-width: 90%;
 }
 
-.timer {
-  position: absolute;
-  top: 2rem;
-  font-size: 3rem;
-  color: $darkGreen;
-  font-weight: bold;
+.quote-container {
+  width: 700px;
+  max-width: 90%;
 }
 
 .quote-display {
   margin-bottom: 1rem;
   margin-left: calc(1rem + 2px);
   margin-right: calc(1rem + 2px);
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .quote-input {
@@ -90,3 +91,79 @@ body,
   text-decoration: underline;
 }
 
+.stat-container {
+  font-size: 2rem;
+  color: $darkGreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 2px solid $darkGreen;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  width: 200px;
+}
+
+.modal {
+  display: flex; /* Hidden by default */
+  align-items: center; /* Center vertically*/
+  justify-content: center; /* Center horizontally*/
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: $white;
+  width: 100vw; /* Could be more or less, depending on screen size */
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.start-menu {
+  display: flex;
+}
+
+.result-menu {
+  display: none;
+}
+
+.modal-inner {
+  height: 100%;
+}
+
+.modal-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.time-selection {
+  display: none;
+}
+
+.modal-button {
+  outline: none;
+  background-color: $lightGreen;
+  border: 2px solid $darkGreen;
+  border-radius: 0.5rem;
+  transition: 0.1s all;
+  font-size: inherit;
+  font-family: inherit;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+#start {
+  padding: 15px;
+}
